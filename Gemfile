@@ -2,6 +2,7 @@ source 'https://ruby.taobao.org'
 
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.0.4'
+gem 'bcrypt-ruby', '3.0.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,7 +12,7 @@ group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-spork', '1.2.0' 
   gem 'spork', '0.9.2'
-  
+  gem 'annotate', '2.5.0'
 end
 
 
