@@ -25,7 +25,7 @@ textarea {
 .center {
   text-align: center;
   h1 {
-    mergin-bottom: 10px;
+    margin-bottom: 10px;
   }
 }
 
@@ -99,4 +99,67 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+/* mixins, variables, etc. */
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/*sidebar*/
+
+aside {
+  section {
+    padding: 10px;
+    border-top: 1px solid lightGray;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+  }
+  span {
+    display: block;
+    margin-bottom: 3px;
+    line-height: 1;
+  }
+  h1 {
+    font-size: 1.6em;
+    text-align: left;
+    letter-spacing: -1px;
+    mergin-bottom: 3px;
+  }
+}
+.gravatar {
+  float: left;
+  margin-left: 10px;
+}
+
+
+/* forms */
+#error_explanation {
+  color: #b94a48;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+input {
+  width: 100%;
 }
