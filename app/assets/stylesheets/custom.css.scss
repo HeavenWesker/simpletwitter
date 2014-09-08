@@ -94,6 +94,7 @@ footer {
   ul {
     float: right;
     margin-right: 10px;
+    list-style: none;
     li {
       float: left;
       margin-left: 10px;
@@ -162,4 +163,19 @@ aside {
 }
 input {
   width: 100%;
+}
+
+/* user index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $lightGray;
+    &:last-child {
+      border-bottom: 1px solid $lightGray;
+    }
+  }
 }
