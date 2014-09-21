@@ -1,0 +1,18 @@
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+    <h3>Time Line</h3>
+    <ol class="microposts">
+    <%# will_paginate @feed_items %>
+      <% if @feed_items.any? %>
+        <%= render partial: 'shared/feed_item', collection: @feed_items %>
+      <% end %>
+    <%= will_paginate @feed_items %>
+    </ol>
+  </div>

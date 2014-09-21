@@ -1,0 +1,14 @@
+<li>
+  <%= gravatar_for micropost.user, size: "40" %>
+  <span class="content"><%= wrap(micropost.content) %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(micropost.created_at)%>
+    <% current_user.name %>
+    <% micropost.user.name %>
+    <% if current_user?(micropost.user) %>
+      <%= link_to "delete", micropost, method: 'delete', 
+      comform: "Are you sure?", 
+      title: micropost.content %>
+    <% end %>
+  </span>
+</li>

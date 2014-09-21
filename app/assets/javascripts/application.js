@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+function check(){
+  content = document.getElementById('micropost_content')
+  length_object = document.getElementById('rest-char')
+  real_length = 140 - content.value.length;
+  record_length = length_object.innerHTML;
+  if(real_length != record_length){
+    document.getElementById('rest-char').innerHTML = real_length;
+  }
+  setTimeout("check()",100);
+}

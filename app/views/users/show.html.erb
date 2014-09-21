@@ -8,4 +8,12 @@
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <h3>Microposts (<%= @user.microposts.count %>) </h3>
+    <%# will_paginate @microposts %>
+    <ol class="microposts">
+      <%= render partial: 'shared/feed_item', collection:  @microposts %>
+    </ol>
+    <%= will_paginate @microposts %>
+  </div>
 </div>

@@ -1,2 +1,6 @@
 #3.6.3
 #7.30 Need Fix
+#10.33 f.object
+#10.42 <%= render partial: 'shared/feed_item', collection: @feed_items %>
+#10.45 empty_array ???
+#10.47 if end

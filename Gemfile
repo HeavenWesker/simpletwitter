@@ -12,9 +12,21 @@ gem 'faker', '1.0.1'
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
-  gem 'guard-spork', '1.2.0' 
+  gem 'guard-rspec' 
+  gem 'guard'
+  gem 'rspec'
   gem 'spork', '0.9.2'
   gem 'annotate', '2.5.0'
+  gem 'childprocess'
+  #gem 'childprocess', '0.3.6'
+  gem 'guard-spork', '1.4.2'
+  #gem 'guard-spork', :github => 'guard/guard-spork'
+  #gem 'rb-inotify'
+
+  gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
+  gem 'growl' if /darwin/ =~ RUBY_PLATFORM
+  # Test gems on Macintosh OS X          
+  gem 'rb-fsevent', :require => false
 end
 
 

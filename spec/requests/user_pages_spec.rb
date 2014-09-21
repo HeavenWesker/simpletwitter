@@ -9,9 +9,16 @@ describe "UserPages" do
   end
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
-    it { should have_selector("h1",    text:   user.name) }
-    it { should have_selector("title", text:   user.name) }
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "bar") }
+    #before { visit user_path(user) }
+    #it { should have_selector("h1",    text:   user.name) }
+    #it { should have_selector("title", text:   user.name) }
+    #describe "microposts" do
+    #  it { should have_content(m1.content) }
+    #  it { should have_content(m2.content) }
+    #  it { should have_content(user.microposts.count) }
+    #end
   end
   describe "SignupPages" do
     before { visit signup_path }
@@ -48,19 +55,22 @@ describe "UserPages" do
       end
     end 
   end
-  #describe "edit" do
-  #  let(:user) { FactoryGirl.create(:user) } 
-  #  before { visit edit_user_path(user) }
-  #  describe "page" do
-  #    it { should have_selector('h1', text: "Update your profile") }
-  #    it { should have_selector('title', text: "Edit user") }
-  #    it { should have_link('change', href: 'http://gravatar.com/emails') }
-  #  end
-  #  describe "with invalid information" do 
-  #    before { click_button "Save changes" } 
-  #    it { should have_content('error') }
-  #  end 
-  #end
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) } 
+    before do
+      sign_in user
+      visit edit_user_path(user) 
+    end
+    describe "page" do
+      it { should have_selector('h1', text: "Update your profile") }
+      it { should have_selector('title', text: "Edit user") }
+      it { should have_link('change', href: 'http://gravatar.com/emails') }
+    end
+    describe "with invalid information" do 
+      before { click_button "Save changes" } 
+      it { should have_content('error') }
+    end 
+  end
   describe "edit" do
     let(:user)    { FactoryGirl.create(:user) }
     let(:submit)  { "Save changes" }
@@ -107,6 +117,7 @@ describe "UserPages" do
       describe "as admin user" do
           let(:admin){ FactoryGirl.create(:admin) }
         before do
+          click_link "Sign out"
           sign_in admin
           visit users_path
         end
