@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe "Static pages" do
-  let(:base_title) {"Ruby on Rails Tutorial Sample App"}
+  let(:base_title) {"Simple Twitter"}
   subject { page }
 
   shared_examples_for "all static pages" do
@@ -12,7 +12,7 @@ describe "Static pages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:heading)     { 'Sample App' }
+    let(:heading)     { 'Simple Twitter' }
     let(:page_title)  { '' }
     it_should_behave_like "all static pages"
     it { should_not have_selector('title', text:'| home') }
@@ -29,6 +29,15 @@ describe "Static pages" do
           should have_selector("li##{item.id}", text: item.content)
         end
       end
+      describe "follower/following counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          other_user.follow!(user)
+          visit root_path
+        end
+        it { should have_link("0 following", href: following_user_path(user)) }
+        it { should have_link("1 followers", href: followers_user_path(user)) }
+      end
     end
   end
 
@@ -41,7 +50,7 @@ describe "Static pages" do
 
   describe "About page" do
     before { visit about_path }
-    let(:heading)     { 'About Us' }
+    let(:heading)     { 'About Me' }
     let(:page_title)  { 'About' }
     it_should_behave_like "all static pages"
   end
@@ -57,12 +66,12 @@ describe "Static pages" do
     click_link "Sign up now!"
     page.should have_selector('h1', text: 'Sign up')
     click_link "About"
-    page.should have_selector('h1', text: 'About Us')
+    page.should have_selector('h1', text: 'About Me')
     click_link "Contact"
     page.should have_selector('h1', text: 'Contact')
     click_link "Help"
     page.should have_selector('h1', text: 'Help')
-    click_link "sample app"
-    page.should have_selector('h1', text: 'Welcome to Sample App')
+    click_link "simple twitter"
+    page.should have_selector('h1', text: 'Welcome to Simple Twitter')
   end
 end

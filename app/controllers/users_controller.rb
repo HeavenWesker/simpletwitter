@@ -50,13 +50,35 @@ class UsersController < ApplicationController
     flash[:success] = "User Deleted"
     redirect_to users_path
   end
+  def followers
+    if signed_in?
+      @title = "Followers"
+      @user = User.find(params[:id])
+      @users = @user.followers.paginate(page: params[:page])
+      render 'show_follow'
+    else
+      store_location
+      redirect_to signin_path
+    end
+  end
+  def following
+    if signed_in?
+      @title = "Following"
+      @user = User.find(params[:id])
+      @users = @user.followed_users.paginate(page: params[:page])
+      render 'show_follow'
+    else
+      store_location
+      redirect_to signin_path
+    end
+  end
   private 
   def correct_user
     @user = User.find(params[:id])
     unless current_user?(@user)
       store_location
       flash[:notice] = "Not allowed!"
-      redirect_to signin_path#(@current_user)
+      redirect_to signin_path
     end
   end
   def admin_user

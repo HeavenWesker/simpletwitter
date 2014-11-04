@@ -21,4 +21,11 @@ describe Micropost do
     before { @micropost.content = "a"*141 }
     it { should_not be_valid }
   end
+  describe "accessible attributes" do
+    it "should not allow access to user_id" do
+      expect do
+        Micropost.new(user_id: user.id)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
 end

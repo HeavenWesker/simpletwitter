@@ -1,8 +1,13 @@
 SampleApp::Application.routes.draw do
 
-  resources :users
-  resources :sessions,    only: [:new, :create, :destory]
-  resources :microposts,  only: [:create, :destroy]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :sessions,      only: [:new, :create, :destory]
+  resources :microposts,    only: [:create, :destroy]
+  resources :relationships#, only: [:create, :destory]
 
   match '/microposts', to: "microposts#index"
   #get "static_pages/home"

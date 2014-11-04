@@ -23,7 +23,7 @@ module SessionsHelper
     end
   end
   def current_user?(user)
-    @current_user == user
+    current_user == user
   end
   def redirect_back_or(default)
     redirect_to session[:return_to] || default

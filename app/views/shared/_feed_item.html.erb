@@ -3,8 +3,6 @@
   <%= link_to feed_item.user.name, feed_item.user %>
   <span class="content"><%= wrap(feed_item.content) %></span>
   <span class="timestamp">
-    <% current_user.name%>
-    <% feed_item.user.name%>
     Posted <%= time_ago_in_words(feed_item.created_at) %>
     <% if current_user?(feed_item.user) %>
       <%= link_to 'delete', feed_item, method: 'delete', 
