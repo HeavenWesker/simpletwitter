@@ -5,7 +5,7 @@ describe ApplicationHelper do
       full_title('foo').should =~ /foo/
     end
     it 'should include the base title' do
-      full_title('foo').should =~ /^Ruby on Rails Tutorial Sample App/
+      full_title('foo').should =~ /^Simple Twitter/
     end
     it 'should not include the bar for the home title' do
       full_title('').should_not =~ /\|/
