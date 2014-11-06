@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :password,              length:   { minimum: 6 }
   validates :password_confirmation, presence: true
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
   def follow!(other_user)
     self.relationships.create!(followed_id: other_user.id)
