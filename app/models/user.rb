@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :id_name
   has_secure_password
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -13,13 +13,13 @@ class User < ActiveRecord::Base
     length:       { minimum:5, maximum: 50 },   
     format:       { with: VALID_EMAIL_REGEX },  
     uniqueness:   { case_sensitive: false }
-  #before_save { |user| user.email = email.downcase }
   before_save { self.email.downcase! }
   before_save :create_remember_token
   validates :password,              length:   { minimum: 6 }
   validates :password_confirmation, presence: true
+  validates :id_name,               presence: true, length: { minimum: 1, maximum: 30 }
   def feed
-    Micropost.from_users_followed_by(self)
+    Micropost.from_users_followed_by_or_reply(self)
   end
   def follow!(other_user)
     self.relationships.create!(followed_id: other_user.id)
