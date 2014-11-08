@@ -148,7 +148,9 @@ describe User do
       let(:unfollowed_post) do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
       end
+      let(:reply_user) { FactoryGirl.create(:user) }
       let(:followed_user) { FactoryGirl.create(:user) }
+      let(:reply_micropost) {reply_user.microposts.create!(content: "@#{@user.id_name} Just A Reply")}
       before do
         @user.follow!(followed_user)
         3.times { followed_user.microposts.create!(content: "Test Micropost") }
@@ -161,6 +163,7 @@ describe User do
           should include(micropost)
         end
       end
+      its(:feed) { should include(reply_micropost) }
     end
   end
   describe "following" do
