@@ -11,11 +11,4 @@ class Micropost < ActiveRecord::Base
           in_reply_to = :user_id_name ",
           user_id: user.id, user_id_name: user.id_name)
   end
-  before_save { insert_reply_to }
-  private 
-  def insert_reply_to
-    /@(\w+)\s([\s\S]+)/.match(self.content) do
-      |match| self[:in_reply_to] = match[1]
-    end
-  end
 end
