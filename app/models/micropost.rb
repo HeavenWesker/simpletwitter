@@ -4,11 +4,17 @@ class Micropost < ActiveRecord::Base
   validates :user_id, presence: true
   validates :content, length: { maximum: 140 }, presence: true
   default_scope order: 'microposts.created_at DESC'
+  before_save :insert_reply 
   def self.from_users_followed_by_or_reply(user)
     followed_user_ids = "select followed_id from relationships where follower_id = :user_id"
     where("user_id IN (#{followed_user_ids}) OR 
           user_id = :user_id OR
           in_reply_to = :user_id_name ",
           user_id: user.id, user_id_name: user.id_name)
+  end
+  def insert_reply
+    /@(\w+)\s([\s\S]+)/.match(self[:content]) do
+      |match| self[:in_reply_to] = match[1]
+    end
   end
 end
