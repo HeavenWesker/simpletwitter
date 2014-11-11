@@ -1,8 +1,7 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="filed">
-    <%# f.text_area :content, placeholder: "Compose new micropost..." %>
-    <%= f.text_area :content, placeholder: "Compose new micropost...", onclick: "check()" %>
+    <%= f.text_area :content, placeholder: yield(:micropost_hint) , onclick: "check()" %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
   <div id="rest-char">140</div>

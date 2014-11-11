@@ -1,5 +1,8 @@
 SampleApp::Application.routes.draw do
 
+  resources :messages,    only: [:index, :new, :show]
+
+
   resources :users do
     member do
       get :following, :followers

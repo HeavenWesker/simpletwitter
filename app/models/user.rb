@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :id_name
   has_secure_password
   has_many :microposts, dependent: :destroy
+  has_many :messages
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id", 
@@ -29,6 +30,9 @@ class User < ActiveRecord::Base
   end
   def unfollow!(other_user)
     self.relationships.find_by_followed_id(other_user.id).destroy
+  end
+  def get_messages
+    Message.from_self_or_to_me(self)
   end
   private
   def create_remember_token

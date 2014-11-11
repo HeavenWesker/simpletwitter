@@ -93,6 +93,12 @@ describe "AuthenticationPages" do
           specify { response.should redirect_to signin_path }
         end
       end
+      describe "in the Message controller" do
+        describe "visit messages page" do
+          before { visit messages_path }
+          specify { should have_selector('title', text: "Sign in")}
+        end
+      end
     end
     describe "as a wrong user" do
       let(:user) { FactoryGirl.create(:user) }
@@ -106,9 +112,6 @@ describe "AuthenticationPages" do
         before { put user_path(wrong_user) }
         specify { response.should redirect_to(signin_path) }
       end
-    end
-    describe "for non-signed-in users" do
-      let(:user) { FactoryGirl.create(:user) }
     end
   end
 end

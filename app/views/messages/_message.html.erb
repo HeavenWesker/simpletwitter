@@ -1,0 +1,13 @@
+<li id="<%= message.id %>">
+  <%= link_to gravatar_for(message.user, size: 40), message.user %>
+  <%= link_to message.user.name, message.user %>
+  <span class="content"><%= wrap(message.content) %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(message.created_at) %>
+    <% if current_user?(message.user) %>
+      <%= link_to 'delete', message, method: 'delete', 
+        data: {confirm: "Are you sure?"}, 
+        title: message.content %>
+    <% end %>
+  </span>
+</li>
