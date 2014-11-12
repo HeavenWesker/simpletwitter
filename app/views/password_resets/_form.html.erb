@@ -1,0 +1,6 @@
+<%= form_tag password_resets_path, method: :post do %>
+  <div class='field'>
+    <%= text_field_tag :email, params[:email], placeholder: "Your Email Address"  %>
+  </div>
+  <%= submit_tag "Reset Password", class: "btn btn-large btn-primary"%>
+<% end %>

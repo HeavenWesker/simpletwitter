@@ -1,5 +1,9 @@
 SampleApp::Application.routes.draw do
 
+  #get "password_resets/new"
+  #match '/password_resets', to: "password_resets#new"
+  resources :password_resets,     only: [:new, :create]
+
   resources :messages,    only: [:index, :new, :show]
 
 

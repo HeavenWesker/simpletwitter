@@ -1,9 +1,9 @@
 source 'https://ruby.taobao.org'
 
 gem 'rails', '3.2.13'
-gem 'bootstrap-sass', '2.0.4'
+gem 'bootstrap-sass'
 gem 'bcrypt-ruby', '3.0.1'
-gem 'bootstrap-will_paginate', '0.0.6'
+gem 'bootstrap-will_paginate'
 gem 'faker', '1.0.1'
 
 # Bundle edge Rails instead:
@@ -15,12 +15,10 @@ group :development, :test do
   gem 'guard-rspec' 
   gem 'guard'
   gem 'rspec'
-  gem 'spork', '0.9.2'
+  gem 'spork'
   gem 'annotate', '2.5.0'
   gem 'childprocess'
-  #gem 'childprocess', '0.3.6'
-  gem 'guard-spork', '1.4.2'
-  #gem 'guard-spork', :github => 'guard/guard-spork'
+  gem 'guard-spork'
   #gem 'rb-inotify'
 
   gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
