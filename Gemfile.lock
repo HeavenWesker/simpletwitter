@@ -204,6 +204,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   jquery-rails
+  mail
   pg (= 0.12.2)
   rails (= 3.2.13)
   rb-fsevent

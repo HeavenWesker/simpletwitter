@@ -4,7 +4,8 @@ class PasswordResetsController < ApplicationController
   def create
     @forgot_user = User.find_by_email(params[:email].downcase)
     if @forgot_user
-      flash[:success] = "The leset email has been sent"
+      UserMailer.password_reset(@forgot_user).deliver
+      flash[:success] = "The reset email has been sent"
       redirect_to root_path
     else
       flash[:error] = "Please input your email"
